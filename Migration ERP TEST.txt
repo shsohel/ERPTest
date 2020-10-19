@@ -1,0 +1,23 @@
+
+///For Attribute Database
+
+add-migration first -context ERPTest.Context.AttributeDbContext
+
+
+update-database -context ERPTest.Context.AttributeDbContext
+
+
+
+///For Buyer Database
+
+add-migration Second -context ERPTest.Context.BuyerDbContext
+
+
+
+update-database -context ERPTest.Context.BuyerDbContext
+
+
+
+
+--Issue--
+ Package Manager Console More than one DbContext was found in ASP NET CORE
