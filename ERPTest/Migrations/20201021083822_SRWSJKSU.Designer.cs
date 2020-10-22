@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ERPTest.Migrations
 {
-    [DbContext(typeof(AttributeDbContext))]
-    [Migration("20201019134404_first")]
-    partial class first
+    [DbContext(typeof(BuyerDbContext))]
+    [Migration("20201021083822_SRWSJKSU")]
+    partial class SRWSJKSU
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,26 +21,38 @@ namespace ERPTest.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ERPTest.Models.Color", b =>
+            modelBuilder.Entity("ERPTest.Models.BuyerContactInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Code")
+                    b.Property<string>("AddressDetails")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ColorNo")
+                    b.Property<Guid>("BuyerContactNo")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("BuyerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -48,29 +60,35 @@ namespace ERPTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.ToTable("BuyerContactInfos");
                 });
 
-            modelBuilder.Entity("ERPTest.Models.Currency", b =>
+            modelBuilder.Entity("ERPTest.Models.BuyerPersonalInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<Guid>("BuyerNo")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CurrencyNo")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ISO")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("IsOwner")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Organization")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrganizationTaxId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -78,37 +96,7 @@ namespace ERPTest.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Currencies");
-                });
-
-            modelBuilder.Entity("ERPTest.Models.Size", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("SizeNo")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sizes");
+                    b.ToTable("BuyerPersonalInfos");
                 });
 #pragma warning restore 612, 618
         }

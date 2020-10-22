@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ERPTest.Migrations.BuyerDb
+namespace ERPTest.Migrations
 {
-    public partial class Second : Migration
+    public partial class SRWSJKSU : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
