@@ -24,6 +24,8 @@ namespace ERPTest.Controllers
             this.attributeDbContext = attributeDbContext;
         }
 
+
+        //GET ALL TABLE DATA as a List
         [HttpGet]
         public async Task<ActionResult<PublicViewModel>> GetPublicData()
         {
@@ -48,7 +50,6 @@ namespace ERPTest.Controllers
             }
             catch (Exception e)
             {
-
                 throw e;
             }          
         }
