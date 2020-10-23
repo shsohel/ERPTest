@@ -161,7 +161,7 @@ namespace ERPTest.Controllers
                 Id = model.Id,
                 AddressDetails = model.AddressDetails,
                 BuyerContactNo = model.BuyerContactNo,
-                BuyerPersonalInfoId = model.BuyerPersonalInfoId,
+                BuyerId = model.BuyerId,
                 Country = model.Country,
                 City = model.City,
                 State = model.State,

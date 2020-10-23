@@ -9,7 +9,7 @@ namespace ERPTest.Models.ViewModels
     {
         public int Id { get; set; }
         public Guid BuyerContactNo { get; set; }
-        public int BuyerPersonalInfoId { get; set; }
+        public int BuyerId { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Country { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,7 +10,8 @@ namespace ERPTest.Models
     {
         public int Id { get; set; }
         public Guid BuyerContactNo { get; set; }
-        public int BuyerPersonalInfoId { get; set; }
+        [ForeignKey("BuyerPersonalInfo")]
+        public int BuyerId { get; set; }
         public string  PhoneNumber { get; set; }
         public string Email { get; set; }
         public string Country { get; set; }
