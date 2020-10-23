@@ -4,14 +4,16 @@ using ERPTest.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ERPTest.Migrations
 {
     [DbContext(typeof(BuyerDbContext))]
-    partial class BuyerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201023163406_Fourth")]
+    partial class Fourth
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,7 +34,10 @@ namespace ERPTest.Migrations
                     b.Property<Guid>("BuyerContactNo")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("BuyerPersonalInfoId")
+                    b.Property<int>("BuyerId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("BuyerPersonalInfoId")
                         .HasColumnType("int");
 
                     b.Property<string>("City")
@@ -103,9 +108,7 @@ namespace ERPTest.Migrations
                 {
                     b.HasOne("ERPTest.Models.BuyerPersonalInfo", "BuyerPersonalInfo")
                         .WithMany("BuyerContactInfos")
-                        .HasForeignKey("BuyerPersonalInfoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BuyerPersonalInfoId");
                 });
 #pragma warning restore 612, 618
         }

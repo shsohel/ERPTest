@@ -16,5 +16,7 @@ namespace ERPTest.Models
         public bool? IsOwner { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        public virtual ICollection<BuyerContactInfo> BuyerContactInfos { get; set; }
     }
 }
