@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ERPTest.Migrations.AttributeDb
+namespace ERPTest.Migrations
 {
-    public partial class firsSAt : Migration
+    public partial class ArsSRt : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

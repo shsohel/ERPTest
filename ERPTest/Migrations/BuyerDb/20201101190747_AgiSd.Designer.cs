@@ -4,14 +4,16 @@ using ERPTest.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace ERPTest.Migrations.AttributeDb
+namespace ERPTest.Migrations.BuyerDb
 {
-    [DbContext(typeof(AttributeDbContext))]
-    partial class AttributeDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(BuyerDbContext))]
+    [Migration("20201101190747_AgiSd")]
+    partial class AgiSd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,26 +21,38 @@ namespace ERPTest.Migrations.AttributeDb
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ERPTest.Models.Color", b =>
+            modelBuilder.Entity("ERPTest.Models.BuyerContactInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Code")
+                    b.Property<string>("AddressDetails")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("ColorNo")
+                    b.Property<Guid>("BuyerContactNo")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("BuyerId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("State")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -46,29 +60,37 @@ namespace ERPTest.Migrations.AttributeDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Colors");
+                    b.HasIndex("BuyerId");
+
+                    b.ToTable("BuyerContactInfos");
                 });
 
-            modelBuilder.Entity("ERPTest.Models.Currency", b =>
+            modelBuilder.Entity("ERPTest.Models.BuyerPersonalInfo", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<Guid>("BuyerNo")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("CurrencyNo")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ISO")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<bool?>("IsOwner")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Organization")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrganizationTaxId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -76,37 +98,16 @@ namespace ERPTest.Migrations.AttributeDb
 
                     b.HasKey("Id");
 
-                    b.ToTable("Currencies");
+                    b.ToTable("BuyerPersonalInfos");
                 });
 
-            modelBuilder.Entity("ERPTest.Models.Size", b =>
+            modelBuilder.Entity("ERPTest.Models.BuyerContactInfo", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("SizeNo")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Sizes");
+                    b.HasOne("ERPTest.Models.BuyerPersonalInfo", "BuyerPersonalInfo")
+                        .WithMany("BuyerContactInfos")
+                        .HasForeignKey("BuyerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
