@@ -46,7 +46,7 @@ namespace ERPTest.Controllers
                     lstCurrencies = currencies,
                     lstSizes = sizes,
                 };
-                return publicViewModel;
+                return Ok(new { obj= publicViewModel });
             }
             catch (Exception e)
             {
